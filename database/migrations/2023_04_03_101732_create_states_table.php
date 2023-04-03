@@ -18,6 +18,8 @@ class CreateStatesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->string('name', 60);
             $table->timestamps();
+
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });
     }
 
