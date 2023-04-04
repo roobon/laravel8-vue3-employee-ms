@@ -18,11 +18,11 @@ class State extends Model
 
     public function cities()
     {
-        return $this->hasMany(related: City::class, foreignKey: 'country_id');
+        return $this->hasMany(related: City::class, foreignKey: 'state_id');
     }
 
     public function employees()
     {
-        return $this->hasMany(related: State::class, foreignKey: 'state_id');
+        return $this->hasMany(related: Employee::class, foreignKey: 'state_id');
     }
 }
