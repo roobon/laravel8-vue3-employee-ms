@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
-    protected $fillable = ['firstname', 'lastname','address','country_id','state_id','city_id','department_id'];
+    protected $fillable = ['firstname', 'lastname', 'address', 'country_id', 'state_id', 'city_id', 'department_id'];
 
     public function country()
     {
@@ -20,5 +20,13 @@ class Employee extends Model
         return $this->belongsTo(related: State::class, foreignKey: 'state_id');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(related: City::class, foreignKey: 'city_id');
+    }
 
+    public function department()
+    {
+        return $this->belongsTo(related: Department::class, foreignKey: 'department_id');
+    }
 }
