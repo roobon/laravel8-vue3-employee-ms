@@ -20,4 +20,9 @@ class State extends Model
     {
         return $this->hasMany(related: City::class, foreignKey: 'country_id');
     }
+
+    public function employees()
+    {
+        return $this->hasMany(related: State::class, foreignKey: 'state_id');
+    }
 }

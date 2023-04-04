@@ -14,4 +14,9 @@ class Country extends Model
     {
         return $this->hasMany(related: State::class, foreignKey: 'country_id');
     }
+
+    public function employees()
+    {
+        return $this->hasMany(related: Employee::class, foreignKey: 'country_id');
+    }
 }
