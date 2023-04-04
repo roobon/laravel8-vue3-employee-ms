@@ -1,3 +1,33 @@
+<?php
+// set collapsed class
+function isCollapsed(array $controllerNameArray)
+{
+    $c_con_array = explode('.', Route::currentRouteName());
+    $current_controller = $c_con_array[0];
+    if (in_array($current_controller, $controllerNameArray)) {
+        echo 'menu-open';
+    }
+}
+
+// set active class in main menu
+function isMenuActive(array $controllerNameArray)
+{
+    $c_con_array = explode('.', Route::currentRouteName());
+    $current_controller = $c_con_array[0];
+    if (in_array($current_controller, $controllerNameArray)) {
+        echo 'active';
+    }
+}
+
+// set active class
+function isActive($routeName)
+{
+    if (Route::currentRouteName() == $routeName) {
+        echo 'active';
+    }
+}
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
@@ -14,7 +44,7 @@
         <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Roobon</a>
+        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
       </div>
     </div>
 
@@ -24,7 +54,7 @@
         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="#" class="nav-link active">
+          <a href="#" class="nav-link {{ isActive('dashboard') }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -32,22 +62,39 @@
           </a>
         </li>
 
-        <li class="nav-header">EXAMPLES</li>
+        {{-- <li class="nav-header">EXAMPLES</li> --}}
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
+        <li class="nav-item {{ isCollapsed(['countries', 'states', 'cities', 'departments']) }}">
+          <a href="#" class="nav-link  {{ isMenuActive(['countries', 'states', 'cities', 'departments']) }}">
+            <i class="nav-icon fas fa-cogs"></i>
             <p>
-              Layout Options
+              System Management
               <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation</p>
+            <li class="nav-item {{ isActive('countries.index') }}">
+              <a href="{{ route('countries.index') }}" class="nav-link">
+                <i class="fas fa-globe nav-icon"></i>
+                <p>Country</p>
+              </a>
+            </li>
+            <li class="nav-item {{ isActive('states.index') }}">
+              <a href="{{ route('states.index') }}" class="nav-link">
+                <i class="fas fa-flag-usa nav-icon"></i>
+                <p>State</p>
+              </a>
+            </li>
+            <li class="nav-item {{ isActive('cities.index') }}">
+              <a href="{{ route('cities.index') }}" class="nav-link">
+                <i class="fas fa-city nav-icon"></i>
+                <p>City</p>
+              </a>
+            </li>
+            <li class="nav-item {{ isActive('departments.index') }}">
+              <a href="{{ route('departments.index') }}" class="nav-link">
+                <i class="fas fa-list-alt nav-icon"></i>
+                <p>Department</p>
               </a>
             </li>
           </ul>
