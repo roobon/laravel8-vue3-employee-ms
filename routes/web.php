@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
   Route::resource('states', StateController::class);
   Route::resource('cities', CityController::class);
   Route::resource('departments', DepartmentController::class);
+  Route::get('employees', function () {
+    return view('pages.employees.index');
+  })->name('employee');
 });
 
 Auth::routes();

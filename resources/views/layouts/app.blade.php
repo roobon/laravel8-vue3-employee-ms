@@ -32,7 +32,7 @@
 
   </div>
   <!-- ./wrapper -->
-
+  <script src="{{ mix('js/app.js') }}"></script>
   <!-- jQuery -->
   <script src="/assets/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->

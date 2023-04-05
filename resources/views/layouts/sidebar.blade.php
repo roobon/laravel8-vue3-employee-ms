@@ -63,7 +63,12 @@ function isActive($routeName)
         </li>
 
         {{-- <li class="nav-header">EXAMPLES</li> --}}
-
+        <li class="nav-item">
+          <a href="{{ route('employee') }}" class="nav-link {{ isActive('employee') }}">
+            <i class="fas fa-city nav-icon"></i>
+            <p>Employees</p>
+          </a>
+        </li>
         <li class="nav-item {{ isCollapsed(['countries', 'states', 'cities', 'departments']) }}">
           <a href="#" class="nav-link  {{ isMenuActive(['countries', 'states', 'cities', 'departments']) }}">
             <i class="nav-icon fas fa-cogs"></i>
