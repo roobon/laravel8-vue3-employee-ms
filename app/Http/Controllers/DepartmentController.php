@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Department;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::orderBy('created_at')->get();
+        return view('pages/departments.index', compact('departments'));
     }
 
     /**
@@ -22,10 +31,10 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +44,20 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|unique:departments|max:60',
+        ]);
+
+        $department = Department::create([
+            'name' => ucfirst($request->name)
+        ]);
+
+        if ($department) {
+            flash()->addSuccess('Department Added');
+        }
+
+        return redirect(route('departments.index'));
     }
 
     /**
@@ -57,7 +79,8 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        $departments = Department::orderBy('created_at')->get();
+        return view('pages.departments.index', compact('departments','department'));
     }
 
     /**
@@ -69,7 +92,18 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:60|unique:departments,name,'.$department->name
+        ]);
+
+        $department->update([
+            'name' => ucfirst($request->name)
+        ]);
+
+        
+        flash()->addSuccess('Department Updated Successfully');
+
+        return redirect(route('departments.index'));
     }
 
     /**
@@ -80,6 +114,9 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        flash()->addSuccess('Department Deleted');
+    
+        return redirect(route('departments.index'));
     }
 }
