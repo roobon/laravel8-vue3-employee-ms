@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\State;
 use Illuminate\Http\Request;
 
 class StateController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
-        //
+        $countries = Country::select('id', 'name')->get();
+        $states = State::orderBy('created_at')->get();
+        return view('pages.states.index', compact('states', 'countries'));
     }
 
     /**
@@ -22,10 +31,10 @@ class StateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +44,11 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'country_id' => 'required',
+            'name' => 'required|unique:states',
+
+        ]);
     }
 
     /**
