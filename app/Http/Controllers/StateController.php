@@ -97,7 +97,7 @@ class StateController extends Controller
     {
         $request->validate([
             'country_id' => 'required',
-            'name' => 'required|max:60|unique:states,name,' . $state->name,
+            'name' => 'required|max:60|unique:states,name,' . $state->id,
         ]);
 
         $state->update([

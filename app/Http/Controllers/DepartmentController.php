@@ -93,7 +93,7 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
         $request->validate([
-            'name' => 'required|max:60|unique:departments,name,'.$department->name
+            'name' => 'required|max:60|unique:departments,name,'.$department->id
         ]);
 
         $department->update([
