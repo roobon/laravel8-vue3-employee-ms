@@ -90,7 +90,7 @@ class CityController extends Controller
     {
         $request->validate([
             'state_id' => 'required',
-            'name' => 'required|max:60|unique:cities,name,' . $city->name,
+            'name' => 'required|max:60|unique:cities,name,' . $city->id,
         ]);
 
         $city->update([
