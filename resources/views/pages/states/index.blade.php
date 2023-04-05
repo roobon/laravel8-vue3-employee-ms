@@ -68,7 +68,7 @@
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-8">
-            {{-- Bogi add form --}}
+
             <div class="card shadow my-3">
               <div class="card-header">
                 <h3 class="text-center m-0 font-weight-bold text-primary">State @isset($state)
