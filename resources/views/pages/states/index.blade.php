@@ -92,17 +92,14 @@
                     <div class="form-group m-0">
                       <label for="_c_id"><strong>Country:</strong></label>
                       <select name="country_id" id="_c_id"
-                        class="form-control @error('state_code') is-invalid @enderror">
+                        class="form-control @error('country_id') is-invalid @enderror">
                         <option value="" selected disabled>Select One</option>
                         @foreach ($countries as $country)
                           <option value="{{ $country->id }}"
-                            @if (isset($state)) old('country_id', $state->country_id)== $country->id ? 'selected':'' @else old('country_id')== $country->id ? 'selected':'' @endif>
+                            @if (isset($state)) {{ old('country_id', $state->country_id) == $country->id ? 'selected' : '' }} @else {{ old('country_id') == $country->id ? 'selected' : '' }} @endif>
                             {{ $country->name }}</option>
                         @endforeach
                       </select>
-
-
-
 
                       @error('country_id')
                         <span class="invalid-feedback" role="alert">

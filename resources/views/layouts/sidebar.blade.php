@@ -54,7 +54,7 @@ function isActive($routeName)
         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="#" class="nav-link {{ isActive('dashboard') }}">
+          <a href="/" class="nav-link {{ isActive('dashboard') }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -73,26 +73,26 @@ function isActive($routeName)
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item {{ isActive('countries.index') }}">
-              <a href="{{ route('countries.index') }}" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route('countries.index') }}" class="nav-link {{ isActive('countries.index') }}">
                 <i class="fas fa-globe nav-icon"></i>
                 <p>Country</p>
               </a>
             </li>
-            <li class="nav-item {{ isActive('states.index') }}">
-              <a href="{{ route('states.index') }}" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route('states.index') }}" class="nav-link {{ isActive('states.index') }}">
                 <i class="fas fa-flag-usa nav-icon"></i>
                 <p>State</p>
               </a>
             </li>
-            <li class="nav-item {{ isActive('cities.index') }}">
-              <a href="{{ route('cities.index') }}" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route('cities.index') }}" class="nav-link {{ isActive('cities.index') }}">
                 <i class="fas fa-city nav-icon"></i>
                 <p>City</p>
               </a>
             </li>
-            <li class="nav-item {{ isActive('departments.index') }}">
-              <a href="{{ route('departments.index') }}" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route('departments.index') }}" class="nav-link {{ isActive('departments.index') }}">
                 <i class="fas fa-list-alt nav-icon"></i>
                 <p>Department</p>
               </a>
